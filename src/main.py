@@ -8,16 +8,19 @@ def parse_args():
     args = parser.parse_args()
     return args
 
-if __name__ == "__main__":
-    args = parse_args()
-    print(f"Input: {args.input_file}, Output: {args.output_file}")
-
 def load_json(file_path):
     with open(file_path, 'r') as file:
         data = json.load(file)
     return data
 
+def save_json(data, file_path):
+    with open(file_path, 'w') as file:
+        json.dump(data, file, indent=4)
+
 if __name__ == "__main__":
     args = parse_args()
     data = load_json(args.input_file)
-    print(f"Data: {data}")
+    save_json(data, args.output_file)
+    print(f"Data saved to {args.output_file}")
+
+
